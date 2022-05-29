@@ -18,4 +18,4 @@ __Technologies__
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 |__Filename__	          |    __Description__ |
 |---------------------- | --------------------------------------------------------------------------------------------------------------------------------------
-|Registration form	    |   It aims to accepts form inputs and also writes inputed values to into a .csv file.
+|Registration form	     |   It aims to accepts and send form inputs to file called userdata.php, saves data submitted into userdata.csv file. Returns the data submitted to the users using the print_r method
