@@ -18,3 +18,7 @@ __Technologies__
 |---------------------- | --------------------------------------------------------------------------------------------------------------------------------------
 |Registration form	    |   It aims to accepts inputs and also writes inputed values to into a .csv file.
 
+Low-level programming & Algorithm
+Module of Low-level programming and algorithm, carried out during Full Stack Software Engineering studies at Holberton School.
+
+Technologies
