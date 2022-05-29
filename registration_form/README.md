@@ -1,4 +1,4 @@
-**Registration Form.PHP**
+**Registration Form .PHP**
 -------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 Project done during Backend Engineering Program at ZURI. It aims to learn about forms registration in PHP language.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -17,4 +17,4 @@ __Technologies__
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 |__Filename__	          |    __Description__ |
 |---------------------- | --------------------------------------------------------------------------------------------------------------------------------------
-|Registration form	    |   It aims to accepts inputs and also writes inputed values to into a .csv file.
+|Registration form	    |   It aims to accepts form inputs and also writes inputed values to into a .csv file.
