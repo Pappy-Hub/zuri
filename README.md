@@ -17,4 +17,4 @@ __Technologies__
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 |__Filename__	          |    __Description__ |
 |---------------------- | --------------------------------------------------------------------------------------------------------------------------------------
-|Registration form	    |   It aims to accepts form inputs and also writes inputed values to into a .csv file.
+|Registration form	    |   It aims to accepts form inputs and also writes inputed values to a .csv file.
