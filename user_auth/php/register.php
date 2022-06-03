@@ -20,7 +20,7 @@
                 // register username or err
                 if ($username_saved) {
                         echo $username . ' existed! \r\n';
-                        include 'register.html';
+                        include '../forms/register.html';
                 } else {
                         $file = fopen("../storage/users.csv", "a");
                         fputs($file, $username . ";" . $password . "\r\n");
@@ -28,7 +28,7 @@
                         echo $username . "successfully registered!";
                 }
         } else {
-                include 'register.html';
+                include '../forms/register.html';
         }
 
 
