@@ -23,24 +23,22 @@ if (isset($_POST['login'])) {
                 break;
             }
         }
-       
-    if($right){
-        $_SESSION['user'] = $user;
-        include 'dashboard.php';  
-        }else{
+
+        if ($right) {
+            $_SESSION['user'] = $user;
+            include 'dashboard.php';
+        } else {
             echo 'invalid UserName or Password';
         }
         fclose($file);
-        }
-        else{
-            include 'login.html';
-        }
-     
+    } else {
+        include 'login.html';
     }
-    // reset password option
-    elseif(isset($_POST['reset'])){
-        header('Location: registerform.html');
-    }
+}
+// reset password option
+elseif (isset($_POST['reset'])) {
+    header('Location: registerform.html');
+}
 
 
 ?>
