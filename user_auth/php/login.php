@@ -37,7 +37,7 @@ if (isset($_POST['login'])) {
 }
 // reset password option
 elseif (isset($_POST['reset'])) {
-    header('Location: registerform.html');
+    header('Location: ../forms/registerform.html');
 }
 
 
