@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
 function resetPassword($email, $newpassword)
 {
     // open file and check if the username exist inside
-    // replace the password exists
+    // replace password if exists
 
     $file = fopen('../storage/users.csv', 'r');
     while (!feof($file)) {

@@ -14,20 +14,33 @@ if (isset($_POST['login'])) {
 
     if (isset($username) && isset($password)) {
         $file = fopen('users.csv', 'r');
-        $good = false;
+        $right = false;
         while (!feof($file)) {
             $line = fgets($file);
             $array = explode(";", $line);
-            if (trim($array[0]) == $username && trim($array[1]) == $pass) {
-                $good = true;
+            if (trim($array[0]) == $username && trim($array[1]) == $password) {
+                $right = true;
                 break;
             }
         }
+       
+    if($right){
+        $_SESSION['user'] = $user;
+        include 'dashboard.php';  
+        }else{
+            echo 'invalid UserName or Password';
+        }
         fclose($file);
-    } else {
-        include 'login.html';
+        }
+        else{
+            include 'login.html';
+        }
+     
     }
-}
+    // reset password option
+    elseif(isset($_POST['reset'])){
+        header('Location: registerform.html');
+    }
 
 
 ?>
