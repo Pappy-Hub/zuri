@@ -25,19 +25,19 @@ if (isset($_POST['login'])) {
         }
 
         if ($right) {
-            $_SESSION['user'] = $user;
+            $_SESSION['user'] = $username;
             include 'dashboard.php';
         } else {
             echo 'invalid UserName or Password';
         }
         fclose($file);
     } else {
-        include 'login.html';
+        include '../forms/login.html';
     }
 }
 // reset password option
 elseif (isset($_POST['reset'])) {
-    header('Location: ../forms/registerform.html');
+    header('Location: ../forms/register.html');
 }
 
 
