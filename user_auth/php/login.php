@@ -1,19 +1,19 @@
 <?php session_start();  ?>
 
 <?php
-// Check whether the session is already there or not if true then header redirect it to the home page directly 
+// Check to see if session exists or not: if true, header redirect it to the home page directly 
 if (isset($_SESSION['username'])) {
-    header("Location:dashboard.php");
+    header("Location:index.php");
 } else {
     include '../forms/login.html';
 }
-// // it checks whether the user clicked login button or not 
+// checks to see if user clicked login button or not 
 if (isset($_POST['login'])) {
-    $username = $_POST['username'];
+    $username = $_POST['fullname'];
     $password = $_POST['password'];
 
     if (isset($username) && isset($password)) {
-        $file = fopen('users.csv', 'r');
+        $file = fopen('../storage/users.csv', 'r');
         $right = false;
         while (!feof($file)) {
             $line = fgets($file);
@@ -25,8 +25,8 @@ if (isset($_POST['login'])) {
         }
 
         if ($right) {
-            $_SESSION['user'] = $username;
-            include 'dashboard.php';
+            $_SESSION['fullname'] = $username;
+            include 'index.php';
         } else {
             echo 'invalid UserName or Password';
         }
