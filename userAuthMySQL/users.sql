@@ -3,3 +3,4 @@ INSERT INTO `Students` (`id`, `full_names`, `country`, `email`, `gender`, `passw
 (3, 'Seyi Olufe', 'Nigeria', 'seyi@gmail.com', 'Male', '1234'),
 (4, 'Chioma Victoria', 'Nigeria', 'vicky@gmail.com', 'Female', '129323'),
 (8, 'Nfon Andrew', 'Cameroon', 'drew@gmail.com', 'Nigeria', 'tatah');
+(99, 'Pappy Fash', 'Naija', 'boyshokan@gmail.com', 'Male','101010');
