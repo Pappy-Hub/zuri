@@ -2,26 +2,22 @@
 include_once 'Dbh.php';
 session_start();
 
-class UserAuth extends Dbh
-{
+class UserAuth extends Dbh{
     protected $db;
 
-    public function __construct()
-    {
-        $this->db = new Dbh();
+    public function __construct(){
+        $this->db = new Dbh(); 
     }
 
-    public function confirmPasswordMatch($password, $confirmPassword)
-    {
-        if ($password === $confirmPassword) {
+    public function confirmPasswordMatch($password, $confirmPassword){
+        if($password === $confirmPassword){
             return true;
         } else {
             return false;
         }
     }
 
-    public function checkEmailExist($email)
-    {
+    public function checkEmailExist($email) {
         $conn = $this->db->connect();
 
         $query = "SELECT email FROM students WHERE email = ?";
@@ -29,36 +25,37 @@ class UserAuth extends Dbh
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
+        
         return ($result) ? true : false;
         $stmt->close();
     }
 
-    public function register($fullname, $email, $password, $confirmPassword, $country, $gender)
-    {
+    public function register($fullname, $email, $password, $confirmPassword, $country, $gender){
         $conn = $this->db->connect();
-        if ($this->confirmPasswordMatch($password, $confirmPassword)) {
+        if($this->confirmPasswordMatch($password, $confirmPassword)){
             if ($this->checkEmailExist($email)) {
-                echo 'email already exists';
+               echo 'email already exists'
+               ;
             } else {
                 $sql = "INSERT INTO Students (`full_names`, `email`, `password`, `country`, `gender`) VALUES ('$fullname','$email', '$password', '$country', '$gender')";
-                if ($conn->query($sql)) {
-                    echo "Ok";
+                if($conn->query($sql)){
+                echo "Ok";
                 } else {
-                    echo "Opps" . $conn->error;
+                    echo "Opps". $conn->error;
                 }
             }
         } else {
             echo "Wrong password combination";
         }
+
+        
     }
 
-    public function login($email, $password)
-    {
+    public function login($email, $password){
         $conn = $this->db->connect();
         $sql = "SELECT * FROM Students WHERE email='$email' AND `password`='$password'";
         $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
+        if($result->num_rows > 0){
             $_SESSION['email'] = $email;
             header("Location: dashboard.php");
         } else {
@@ -67,8 +64,7 @@ class UserAuth extends Dbh
     }
 
 
-    public function updateUser($email, $password)
-    {
+    public function updateUser($email, $password){
         if ($this->checkEmailExist($email)) {
             $conn = $this->db->connect();
             $query = "UPDATE students SET password = ? WHERE email = ?";
@@ -76,30 +72,28 @@ class UserAuth extends Dbh
             $stmt->bind_param("ss", $password, $email);
             $stmt->execute();
 
-
+          
             header("Location: ../dashboard.php?update=success");
         } else {
             header("Location: forms/resetpassword.php?error=1");
         }
     }
 
-    public function deleteUser($id)
-    {
+    public function deleteUser($id){
         $conn = $this->db->connect();
         $sql = "DELETE FROM Students WHERE id = '$id'";
-        if ($conn->query($sql) === TRUE) {
+        if($conn->query($sql) === TRUE){
             header("Location: dashboard.php");
         } else {
             header("refresh:0.5; url=action.php?all=?message=Error");
         }
     }
 
-    public function getAllUsers()
-    {
+    public function getAllUsers(){
         $conn = $this->db->connect();
         $sql = "SELECT * FROM Students";
         $result = $conn->query($sql);
-        echo "<html>
+        echo"<html>
         <head>
         <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
         </head>
@@ -109,41 +103,39 @@ class UserAuth extends Dbh
         <tr style='height: 40px'>
             <thead class='thead-dark'> <th>ID</th><th>Full Names</th> <th>Email</th> <th>Gender</th> <th>Country</th> <th>Action</th>
         </thead></tr>";
-        if ($result->num_rows > 0) {
-            while ($data = mysqli_fetch_assoc($result)) {
+        if($result->num_rows > 0){
+            while($data = mysqli_fetch_assoc($result)){
                 //show data
-                echo "<tr style='height: 20px'>" .
+                echo "<tr style='height: 20px'>".
                     "<td style='width: 50px; background: gray'>" . $data['id'] . "</td>
                     <td style='width: 150px'>" . $data['full_names'] .
                     "</td> <td style='width: 150px'>" . $data['email'] .
-                    "</td> <td style='width: 150px'>" . $data['gender'] .
-                    "</td> <td style='width: 150px'>" . $data['country'] .
+                    "</td> <td style='width: 150px'>" . $data['gender'] . 
+                    "</td> <td style='width: 150px'>" . $data['country'] . 
                     "</td>
                     <td style='width: 150px'> 
                     <form action='action.php' method='post'>
                     <input type='hidden' name='id'" .
-                    "value=" . $data['id'] . ">" .
-                    "<button class='btn btn-danger' type='submit', name='delete'> DELETE </button> </form> </td>" .
+                     "value=" . $data['id'] . ">".
+                    "<button class='btn btn-danger' type='submit', name='delete'> DELETE </button> </form> </td>".
                     "</tr>";
             }
             echo "</table></table></center></body></html>";
         }
     }
 
-    public function logout($email)
-    {
+    public function logout($email){
         session_start();
         session_destroy();
         header("Location: index.php");
     }
 
 
-    public function getUser($email)
-    {
+    public function getUser($email){
         $conn = $this->db->connect();
         $sql = "SELECT * FROM users WHERE email = '$email'";
         $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
+        if($result->num_rows > 0){
             return $result->fetch_assoc();
         } else {
             return false;
@@ -151,12 +143,11 @@ class UserAuth extends Dbh
     }
 
 
-    public function getUserByUsername($email)
-    {
+    public function getUserByUsername($email){
         $conn = $this->db->connect();
         $sql = "SELECT * FROM users WHERE email = '$email'";
         $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
+        if($result->num_rows > 0){
             return $result->fetch_assoc();
         } else {
             return false;
