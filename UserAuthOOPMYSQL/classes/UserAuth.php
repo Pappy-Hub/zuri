@@ -39,7 +39,7 @@ class UserAuth extends Dbh{
             } else {
                 $sql = "INSERT INTO Students (`full_names`, `email`, `password`, `country`, `gender`) VALUES ('$fullname','$email', '$password', '$country', '$gender')";
                 if($conn->query($sql)){
-                echo "Ok";
+                header("Location: dashboard.php");
                 } else {
                     echo "Opps". $conn->error;
                 }
@@ -73,7 +73,7 @@ class UserAuth extends Dbh{
             $stmt->execute();
 
           
-            header("Location: ../dashboard.php?update=success");
+            header("Location: dashboard.php?update=success");
         } else {
             header("Location: forms/resetpassword.php?error=1");
         }

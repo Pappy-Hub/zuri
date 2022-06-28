@@ -8,7 +8,9 @@ class Dbh {
     
 
     protected function connect() {
-        return mysqli_connect($this->hostname, $this->username, $this->password, $this->dbname);
+        $conn = new mysqli($this->hostname, $this->username, $this->password, $this->dbname);
+        return $conn;
     }
+    
 
 }
