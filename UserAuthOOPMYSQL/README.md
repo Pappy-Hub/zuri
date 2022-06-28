@@ -1,6 +1,6 @@
 # DESCRIPTION
 You have been provided with drive link with some code skeleton here
-It has the following
+It has the following:
 ## MAIN FOLDER: UserAuthOOPMYSQL
 
 ### `index.php` 
